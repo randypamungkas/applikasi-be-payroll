@@ -1,13 +1,23 @@
-const userRepository = require('../repositories/user')
+const userRepository = require("../repositories/user");
 
 module.exports = {
   userGetAll: async (req, res) => {
     try {
-      const response = await userRepository.getAllUser()
+      const response = await userRepository.getAllUser();
 
-      res.status(200).json(response)
+      res.status(200).json(response);
     } catch (err) {
-      res.status(400).json(err.message)
+      res.status(400).json(err.message);
     }
   },
-}
+
+  careteUser: async (req, res) => {
+    try {
+      const response = await userRepository.createUser(req);
+
+      res.status(200).json(response);
+    } catch (err) {
+      res.status(400).json(err.message);
+    }
+  },
+};

@@ -1,5 +1,11 @@
-require('dotenv').config();
-const { username, password, database, host, dialect } = require('../../helper/env');
+require("dotenv").config();
+const {
+  username,
+  password,
+  database,
+  host,
+  dialect,
+} = require("../../helper/env");
 
 const define = {
   timestamps: true,
