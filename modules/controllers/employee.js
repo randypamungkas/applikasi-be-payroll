@@ -3,7 +3,7 @@ const employeeRepository = require("../repositories/employee");
 module.exports = {
   employeeGetAll: async (req, res) => {
     try {
-      const response = await employeeRepository.getAllEmployee();
+      const response = await employeeRepository.getAllEmployee(req, res);
 
       res.status(200).json(response);
     } catch (err) {
@@ -13,7 +13,7 @@ module.exports = {
 
   getDetailEmployee: async (req, res) => {
     try {
-      const response = await employeeRepository.getDetailEmployee(req);
+      const response = await employeeRepository.getDetailEmployee(req, res);
 
       res.status(200).json(response);
     } catch (err) {
@@ -23,7 +23,7 @@ module.exports = {
 
   createEmployee: async (req, res) => {
     try {
-      const response = await employeeRepository.createEmployee(req);
+      const response = await employeeRepository.createEmployee(req, res);
 
       res.status(200).json(response);
     } catch (err) {
@@ -33,7 +33,7 @@ module.exports = {
 
   updateEmployee: async (req, res) => {
     try {
-      const response = await employeeRepository.updateEmployee(req);
+      const response = await employeeRepository.updateEmployee(req, res);
 
       res.status(200).json(response);
     } catch (err) {
@@ -43,9 +43,8 @@ module.exports = {
 
   deleteEmployee: async (req, res) => {
     try {
-      const response = await employeeRepository.deleteEmployee(req);
+      const response = await employeeRepository.deleteEmployee(req, res);
 
-      console.log(response)
       res.status(200).json(response);
     } catch (err) {
       res.status(400).json(err.message);
