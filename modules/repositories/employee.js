@@ -2,12 +2,6 @@ const db = require("../../database/db/models");
 const {
   v4: uuidv4
 } = require("uuid");
-const {
-  failed,
-  success,
-  successAndCount,
-} = require("../../helper/response");
-const e = require("express");
 
 module.exports = {
   getDetailEmployee: async (req, res) => {
@@ -17,12 +11,12 @@ module.exports = {
       });
 
       if (response) {
-        success(res, response || [], "Sukses")
+        return response
       }
 
-      failed(res, "Tidak ada data")
+      throw new Error("Data tidak ada");
     } catch (err) {
-      failed(res, err.message)
+      throw new Error(err);
     }
   },
 
@@ -33,7 +27,7 @@ module.exports = {
         id: uuidv4()
       });
 
-      success(res, response || [], "Karyawan berhasil ditambahkan")
+      return response
     } catch (err) {
       throw new Error(err);
     }
@@ -48,8 +42,10 @@ module.exports = {
       if (response[0] === 1) {
         const resDetailEmployee = await db.employees.findByPk(req.params.id)
 
-        success(res, resDetailEmployee || [], "Karyawan berhasil diperbarui")
+        return resDetailEmployee
       }
+
+      throw new Error("Data tidak ada");
     } catch (err) {
       throw new Error(err);
     }
@@ -66,10 +62,12 @@ module.exports = {
           raw: true,
         });
 
-        success(res, resEmployee || [], !resEmployee && "Data berhasil dihapus")
+        return resEmployee
       }
+
+      throw new Error("Data tidak ada");
     } catch (err) {
-      failed(res, err.message);
+      throw new Error(err);
     }
   },
 
@@ -102,11 +100,13 @@ module.exports = {
 
       const pages = Math.ceil(count / limit)
 
-      successAndCount(
-        res, rows, count, pages, rows.length < 1 ? "Data tidak ditemukan" : "Sukses"
-      )
+      return {
+        count,
+        rows,
+        pages,
+      }
     } catch (err) {
-      failed(res, err.message);
+      throw new Error(err);
     }
   },
 };
