@@ -1,5 +1,4 @@
 const db = require("../../database/db/models");
-const employeeController = require("../controllers/employee")
 const {
   v4: uuidv4
 } = require("uuid");
