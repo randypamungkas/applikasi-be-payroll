@@ -64,19 +64,6 @@ module.exports = {
 
       if (response === 1) {
         const resEmployee = await db.employees.findAll({
-          attributes: [
-            "id",
-            "code",
-            "name",
-            "address",
-            "account_number",
-            "salary",
-            "overtime",
-            "salary_received",
-            "createdAt",
-            "updatedAt",
-          ],
-        }, {
           raw: true,
         });
 

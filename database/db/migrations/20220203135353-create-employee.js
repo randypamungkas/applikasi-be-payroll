@@ -20,19 +20,19 @@ module.exports = {
         allowNull: false,
       },
       account_number: {
-        type: Sequelize.INTEGER(11),
+        type: Sequelize.STRING(50),
         allowNull: false,
       },
       salary: {
-        type: Sequelize.INTEGER(11),
+        type: Sequelize.BIGINT(11),
         allowNull: true,
       },
       overtime: {
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER(11),
         allowNull: true,
       },
       salary_received: {
-        type: Sequelize.INTEGER(11),
+        type: Sequelize.BIGINT(11),
         allowNull: true,
       },
       createdAt: {

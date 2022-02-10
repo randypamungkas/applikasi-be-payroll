@@ -1,5 +1,7 @@
 "use strict";
-const { Model } = require("sequelize");
+const {
+  Model
+} = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
     /**
@@ -11,56 +13,53 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Employee.init(
-    {
-      id: {
-        allowNull: false,
-        primaryKey: true,
-        type: DataTypes.UUID,
-      },
-      code: {
-        type: DataTypes.STRING(100),
-        allowNull: false,
-      },
-      name: {
-        type: DataTypes.STRING(100),
-        allowNull: false,
-      },
-      address: {
-        type: DataTypes.STRING(200),
-        allowNull: false,
-      },
-      account_number: {
-        type: DataTypes.INTEGER(11),
-        allowNull: false,
-      },
-      salary: {
-        type: DataTypes.INTEGER(11),
-        allowNull: true,
-      },
-      overtime: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      },
-      salary_received: {
-        type: DataTypes.INTEGER(11),
-        allowNull: true,
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-      },
+  Employee.init({
+    id: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID,
     },
-    {
-      sequelize,
-      modelName: "employees",
-      tableName: "employees",
-      freezeTableName: true,
-    }
-  );
+    code: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    address: {
+      type: DataTypes.STRING(200),
+      allowNull: false,
+    },
+    account_number: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    salary: {
+      type: DataTypes.BIGINT(11),
+      allowNull: true,
+    },
+    overtime: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+    },
+    salary_received: {
+      type: DataTypes.BIGINT(11),
+      allowNull: true,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+  }, {
+    sequelize,
+    modelName: "employees",
+    tableName: "employees",
+    freezeTableName: true,
+  });
   return Employee;
 };
