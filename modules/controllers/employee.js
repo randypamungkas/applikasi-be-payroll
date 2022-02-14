@@ -105,13 +105,13 @@ module.exports = {
             ),
           },
         },
-        path: './output.pdf',
+        type: 'buffer',
       }
 
       pdf
         .create(document, options)
         .then((resDocs) => {
-          res.status(200).sendfile(resDocs.filename)
+          res.status(200).json(resDocs)
         })
         .catch((error) => {
           console.error(error)
