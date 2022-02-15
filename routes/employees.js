@@ -8,9 +8,5 @@ router.get('/detail-employee/:id', employeeController.getDetailEmployee)
 router.post('/create-employee', employeeController.createEmployee)
 router.put('/update-employee/:id', employeeController.updateEmployee)
 router.delete('/delete-employee/:id', employeeController.deleteEmployee)
-router.get(
-  '/print-payslip-employee/:id',
-  employeeController.printPdfPaySlipsEmployee,
-)
 
 module.exports = router
