@@ -23,6 +23,10 @@ module.exports = {
       const response = await db.employees.create({
         ...req.body,
         id: uuidv4(),
+        salary_received:
+          req.body.salary_received !== 0
+            ? req.body.salary_received
+            : req.body.salary,
       })
 
       return response
